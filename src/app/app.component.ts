@@ -42,7 +42,9 @@ export class AppComponent {
 	}
 
 	anyadirTarea() {
-		this.tareas.push(new Tarea(Math.random()));
+		// Math.max(...this.tareas.map(t => t.id)) + 1 => esto coje tods los idea y con Math.max coje el mas grande y le añade 1. Asi no hay repetidos
+		const nuevoId = this.tareas.length > 0 ? Math.max(...this.tareas.map(t => t.id)) + 1 : 1;
+    	this.tareas.push(new Tarea(nuevoId));
 	}
 
 	setEditTareaMode(tarea: Tarea) {
@@ -54,14 +56,13 @@ export class AppComponent {
 
 
 	editTarea() {
-		this.tareas.map( tarea => {
-			if (tarea.id == this.isEditing.tareaId) {
-				tarea.titulo = this.tareaTitulo
-				tarea.minutos = this.tareaTiempo
-				this.isEditing = { tareaId: -1, edit: false };
-				return tarea
+		this.tareas.forEach(tarea => {
+			if (tarea.id === this.isEditing.tareaId) {
+				tarea.titulo = this.tareaTitulo;
+				tarea.minutos = this.tareaTiempo;
 			}
-		})
+		});
+		this.cancelEdit();
 	}
 
 	cancelEdit() {
@@ -70,5 +71,14 @@ export class AppComponent {
 
 	verCelda(tarea: Tarea) {
 		return tarea.id !== this.isEditing.tareaId || !this.isEditing.edit
+	}
+
+	eliminar(tarea: Tarea, event: MouseEvent) {
+		event.preventDefault();
+		this.tareas = this.tareas.filter(t => t.id != tarea.id)
+	}
+
+	eliminarSelected() {
+		this.tareas = this.tareas.filter(t => t.isSelected != true)
 	}
 }

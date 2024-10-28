@@ -5,6 +5,7 @@
 		<tr>
  			<th>Tarea</th>
 			<th>Tiempo (minutos)</th>
+			<th>Acciones</th>
 		</tr>
 		<tr (dblclick)="setEditTareaMode(tarea)" *ngFor="let tarea of tareas">
 			<td *ngIf="verCelda(tarea)">{{tarea.titulo}}</td>
@@ -16,8 +17,22 @@
 			<td *ngIf="!verCelda(tarea)">
 				<input [(ngModel)]="tareaTiempo" type="number" />
 			</td>
+
+			<td class="acciones">
+				<p><a href="" (click)="eliminar(tarea, $event)">Eliminar</a></p>
+				<label for="">
+					<input [(ngModel)]="tarea.isSelected" type="checkbox">
+				</label>
+			</td>
+
 			
 		</tr>
 	</table>
-	<button (click)="anyadirTarea()">Añadir tarea</button>
+
+	<div class="buttons-section">
+		<button (click)="anyadirTarea()">Añadir tarea</button>
+		<button (click)="eliminarSelected()">Eliminar Tareas Seleccionadas</button>
+	</div>
+	
+
 </div>

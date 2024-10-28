@@ -33,7 +33,23 @@ td {
   }
 }
 
+.acciones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 
+  label {
+    display: flex;
+  }
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 150px;
+}
 
   /* Filas alternas para mejor visualización */
 tr:nth-child(even) {
