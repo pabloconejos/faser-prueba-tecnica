@@ -4,11 +4,20 @@
 	<table>
 		<tr>
  			<th>Tarea</th>
-			<th>Tiempo</th>
+			<th>Tiempo (minutos)</th>
 		</tr>
-		<tr *ngFor="let tarea of tareas">
-			<td>{{tarea.titulo}}</td>
-			<td>{{tarea.minutos}} minutos</td>
+		<tr (dblclick)="setEditTareaMode(tarea)" *ngFor="let tarea of tareas">
+			<td *ngIf="verCelda(tarea)">{{tarea.titulo}}</td>
+			<td *ngIf="verCelda(tarea)">{{tarea.minutos}}</td>
+
+			<td *ngIf="!verCelda(tarea)">
+				<input [(ngModel)]="tareaTitulo" type="text"  />
+			</td>
+			<td *ngIf="!verCelda(tarea)">
+				<input [(ngModel)]="tareaTiempo" type="number" />
+			</td>
+			
 		</tr>
 	</table>
+	<button (click)="anyadirTarea()">Añadir tarea</button>
 </div>
