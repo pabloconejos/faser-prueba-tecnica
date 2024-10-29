@@ -19,15 +19,15 @@ export class AppComponent {
 		this.cancelEdit();
 	}
 
-
-	tareas: Tarea[];
 	isEditing: {tareaId: number, edit: boolean} = {
 		tareaId: -1,
 		edit: false
 	};
 
+	tareas: Tarea[];
 	tareaTitulo: string;
 	tareaTiempo: number;
+	ordenarTiempoAsc: boolean = false
 
 	constructor(
         public service: AppService,
@@ -80,5 +80,14 @@ export class AppComponent {
 
 	eliminarSelected() {
 		this.tareas = this.tareas.filter(t => t.isSelected != true)
+	}
+
+	ordenarTiempo() {
+		this.ordenarTiempoAsc = !this.ordenarTiempoAsc
+		this.tareas = this.ordenarTiempoAsc ? this.tareas.sort((a, b) => b.minutos - a.minutos) : this.tareas.sort((a, b) => a.minutos - b.minutos)
+	}
+
+	ordenarTarea() {
+		this.tareas = this.tareas.sort((a, b) => a.titulo.localeCompare(b.titulo))
 	}
 }

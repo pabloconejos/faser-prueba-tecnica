@@ -3,8 +3,8 @@
 	<h2>Listado de tareas</h2>
 	<table>
 		<tr>
- 			<th>Tarea</th>
-			<th>Tiempo (minutos)</th>
+ 			<th (click)="ordenarTarea()">Tarea</th>
+			<th (click)="ordenarTiempo()" >Tiempo (minutos)</th>
 			<th>Acciones</th>
 		</tr>
 		<tr (dblclick)="setEditTareaMode(tarea)" *ngFor="let tarea of tareas">
