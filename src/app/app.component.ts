@@ -95,4 +95,8 @@ export class AppComponent {
 		event.preventDefault();
 		tarea.isHightlighted = !tarea.isHightlighted
 	}
+
+	ramdonOrder() {
+		this.tareas = this.tareas.sort( function() { return Math.random() - 0.5 }  )
+	}
 }
