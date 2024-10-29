@@ -33,6 +33,11 @@ td {
   }
 }
 
+.hightlighted {
+  outline: 2px solid #00ff00; /* Color base del borde */
+  box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+}
+
 .acciones {
   display: flex;
   justify-content: center;
@@ -65,4 +70,4 @@ tr:hover {
 table, th, td {
     border: 1px solid #ddd;
     border-radius: 4px;
-  }
+}

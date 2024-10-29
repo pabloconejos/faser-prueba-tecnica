@@ -7,7 +7,7 @@
 			<th (click)="ordenarTiempo()" >Tiempo (minutos)</th>
 			<th>Acciones</th>
 		</tr>
-		<tr (dblclick)="setEditTareaMode(tarea)" *ngFor="let tarea of tareas">
+		<tr [ngClass]="tarea.isHightlighted ? 'hightlighted' : ''" (dblclick)="setEditTareaMode(tarea)" *ngFor="let tarea of tareas">
 			<td *ngIf="verCelda(tarea)">{{tarea.titulo}}</td>
 			<td *ngIf="verCelda(tarea)">{{tarea.minutos}}</td>
 
@@ -20,18 +20,20 @@
 
 			<td class="acciones">
 				<p><a href="" (click)="eliminar(tarea, $event)">Eliminar</a></p>
+				<p><a href="" (click)="destacar(tarea, $event)">{{ tarea.isHightlighted ? 'Desactivar' : 'Destacar'}}</a></p>
+
 				<label for="">
 					<input [(ngModel)]="tarea.isSelected" type="checkbox">
 				</label>
 			</td>
 
-			
 		</tr>
 	</table>
 
 	<div class="buttons-section">
 		<button (click)="anyadirTarea()">Añadir tarea</button>
 		<button (click)="eliminarSelected()">Eliminar Tareas Seleccionadas</button>
+		<button (click)="ramdonOrder()">Ramdon Order</button>
 	</div>
 	
 

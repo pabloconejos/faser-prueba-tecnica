@@ -90,4 +90,9 @@ export class AppComponent {
 	ordenarTarea() {
 		this.tareas = this.tareas.sort((a, b) => a.titulo.localeCompare(b.titulo))
 	}
+
+	destacar(tarea: Tarea, event: MouseEvent) {
+		event.preventDefault();
+		tarea.isHightlighted = !tarea.isHightlighted
+	}
 }
